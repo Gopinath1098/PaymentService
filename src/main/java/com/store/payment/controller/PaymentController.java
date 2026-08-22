@@ -1,6 +1,7 @@
 package com.store.payment.controller;
 
 import com.razorpay.Order;
+import com.store.payment.dto.PaymentTemplatetDTO;
 import com.store.payment.service.PaymentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +16,8 @@ public class PaymentController {
     }
 
     @PostMapping("/initiate")
-    public String initiatePayment(@RequestParam Double amount,
-                                  @RequestParam String currency,
-                                  @RequestParam String receiptId) throws Exception {
-        Order order = paymentService.createOrder(amount, currency, receiptId);
+    public String initiatePayment(@RequestBody PaymentTemplatetDTO paymentDTO) throws Exception {
+        Order order = paymentService.createOrder(paymentDTO);
         return order.toString(); // send order JSON to frontend
     }
 

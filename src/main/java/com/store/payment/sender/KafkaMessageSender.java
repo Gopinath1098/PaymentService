@@ -1,12 +1,12 @@
 package com.store.payment.sender;
 
 
-import com.store.payment.dto.PaymentTemplateDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import com.store.payment.dto.PaymentTemplatetDTO;
 
 @Service
 @Slf4j
@@ -15,11 +15,11 @@ public class KafkaMessageSender {
     private String paymentTopic;
 
     @Autowired
-    private KafkaTemplate<String, PaymentTemplateDTO> kafkaTemplate;
+    private KafkaTemplate<String,PaymentTemplatetDTO> kafkaTemplate;
 
-    public void sendPayment(PaymentTemplateDTO order) {
-        kafkaTemplate.send(paymentTopic, order);
-        log.info("Order event sent: {}",order);
+    public void sendPayment(PaymentTemplatetDTO payment) {
+        kafkaTemplate.send(paymentTopic, payment);
+        log.info("Order event sent: {}",payment);
     }
 }
 

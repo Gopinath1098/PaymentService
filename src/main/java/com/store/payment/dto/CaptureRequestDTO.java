@@ -1,21 +1,17 @@
 package com.store.payment.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CaptureRequestDTO {
 
     private String paymentId;
     private Double amount;
     private String currency = "INR"; // default to INR
 
-    // Constructors
-    public CaptureRequestDTO() {}
-
-    public CaptureRequestDTO(String paymentId, Double amount, String currency) {
-        this.paymentId = paymentId;
-        this.amount = amount;
-        this.currency = currency;
-    }
 }

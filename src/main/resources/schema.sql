@@ -8,5 +8,6 @@ CREATE TABLE payments (
     payment_method VARCHAR(255),               -- Card, UPI, Wallet, etc.
     payment_status VARCHAR(50),                -- PAID / UNPAID
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NULL
+    updated_at TIMESTAMP NULL,
+    rzp_order_id VARCHAR(50)
 );

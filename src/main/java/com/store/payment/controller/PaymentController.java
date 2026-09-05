@@ -1,12 +1,13 @@
 package com.store.payment.controller;
 
-import com.razorpay.Order;
 import com.store.payment.dto.PaymentTemplatetDTO;
 import com.store.payment.service.PaymentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/api/v1/payments")
 public class PaymentController {
 
     private final PaymentService paymentService;
@@ -16,9 +17,9 @@ public class PaymentController {
     }
 
     @PostMapping("/initiate")
-    public String initiatePayment(@RequestBody PaymentTemplatetDTO paymentDTO) throws Exception {
-        Order order = paymentService.createOrder(paymentDTO);
-        return order.toString(); // send order JSON to frontend
+    public ResponseEntity<String> initiatePayment(@RequestBody PaymentTemplatetDTO paymentDTO) throws Exception {
+        paymentService.createOrder(paymentDTO);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("ORDER CAPTURED"); // send order JSON to frontend
     }
 
     @PostMapping("/capture")
